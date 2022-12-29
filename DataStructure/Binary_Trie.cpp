@@ -67,6 +67,22 @@ template<
         return nodes[u].count;
     }
 
+    //return how many numbers ^ xor_val less than x
+    Count count_less(Val x, Val xor_val = 0){
+        x ^= xor_val;
+        int u = 0;
+        Count res = 0;
+        for(int i = B - 1; i >= 0; i--){
+            int b = get_bit(x, i);
+            if(b == 1){
+                int up_node = get_child(u, 0);
+                res += nodes[up_node].count;
+            }
+            u = get_child(u, b);
+        }
+        return res;
+    }
+
 // private:
     vector<Node> nodes;
 
