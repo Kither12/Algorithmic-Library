@@ -1,7 +1,7 @@
 struct Sieve{
     int N = 1e7;
     vector<int> minFactor;
-    vector<uint> prime;
+    vector<int> prime;
 
     Sieve(){
         minFactor = vector<int>(N + 5);
