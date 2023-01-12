@@ -1,19 +1,22 @@
-template<const int N>
+template<typename T>
 struct Fenwick{
-    long long tree[N + 5];
-    void update(int u, int v){
-        for(int i = u; i <= N; i += i & -i){
-            bit[i] += v; 
+    vector<T> tree;
+    int n;
+    Fenwick(int n) : n(n), tree(n + 5, 0){
+    }
+    void update(int u, T v){
+        for(int i = u; i <= n; i += i & -i){
+            tree[i] += v; 
         }
     }
-    long long get(int u){
-        long long res = 0;
+    T get(int u){
+        T res = 0;
         for(int i = u; i > 0; i -= i & -i){
-            res += bit[i];
+            res += tree[i];
         }
         return res;
     }
-    long long get(int l, int r){
+    T get(int l, int r){
         return get(r) - get(l - 1);
     }
 };
